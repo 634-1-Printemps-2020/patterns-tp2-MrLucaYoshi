@@ -24,6 +24,9 @@ public class Game {
      */
     public void addPlayer(Player player) {
       // TODO: Votre code ici
+        if(!history.containsKey(player)){
+            history.put(player, new ArrayList<>());
+        }
     }
 
     /**
@@ -31,6 +34,15 @@ public class Game {
      */
     public void play() {
       // TODO: Votre code ici
+        rules = new Rules();
+        coin = new Coin();
+        for(Player player : history.keySet()){
+            player.play(coin);
+            while(!rules.checkWin(history.get(player))) {
+                player.play(coin);
+                history.get(player).add(coin.getState());
+            }
+        }
     }
 
     /**
@@ -40,6 +52,7 @@ public class Game {
      */
     public Statistics getStatistics() {
       // TODO: Votre code ici
+
       return null;
     }
 
@@ -50,7 +63,7 @@ public class Game {
      */
     public Map<Player, List<CoinState>> getHistory() {
       // TODO: Votre code ici
-      return null;
+      return history;
     }
 
 
@@ -62,7 +75,7 @@ public class Game {
      */
     public List<CoinState> getSpecificHistory(Player player) {
       // TODO: Votre code ici
-      return null;
+      return history.get(player);
     }
 
 }

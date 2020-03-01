@@ -1,5 +1,7 @@
 package materials;
 
+import java.util.Random;
+
 public class Coin {
 
   private CoinState coinState;
@@ -10,6 +12,12 @@ public class Coin {
    */
   public void throwCoin() {
     // TODO : Votre code ici
+    Random random = new Random();
+    if(random.nextInt(2) == 0){
+      coinState = CoinState.HEADS;
+    } else {
+      coinState = CoinState.TAILS;
+    }
   }
 
   public CoinState getState() {
